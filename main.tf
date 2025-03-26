@@ -288,3 +288,39 @@ resource "aws_instance" "ec2_1" {
 ${local.ec2_user_data_base}
 EOF
 }
+
+# RDS 설정 시작
+resource "aws_db_subnet_group" "db_subnet_group_1" {
+  name = "${var.prefix}-db-subnet-group-1"
+  subnet_ids = [aws_subnet.subnet_1.id, aws_subnet.subnet_2.id, aws_subnet.subnet_3.id, aws_subnet.subnet_4.id]
+
+  tags = {
+    Name = "${var.prefix}-db-subnet-group-1"
+    Team = var.team_tag
+  }
+}
+
+# RDS 설정 시작
+resource "aws_db_instance" "db_1" {
+  identifier              = "${var.prefix}-db-1"
+  allocated_storage       = 20
+  max_allocated_storage   = 1000
+  engine = "mysql"  # 데이터베이스 엔진을 MySQL로 설정
+  engine_version = "8.0.41" # 최신 MySQL 버전으로 설정
+  instance_class          = "db.t3.micro"
+  publicly_accessible     = true
+  username                = "admin"
+  password                = var.password_1
+  backup_retention_period = 1
+  skip_final_snapshot     = true
+  vpc_security_group_ids = [aws_security_group.sg_1.id]
+  db_subnet_group_name    = aws_db_subnet_group.db_subnet_group_1.name
+  availability_zone       = "${var.region}b"
+
+  tags = {
+    Name = "${var.prefix}-db-1"
+    Team = var.team_tag
+  }
+}
+# RDS 설정 끝
+# RDS 설정 끝

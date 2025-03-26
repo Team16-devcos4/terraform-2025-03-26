@@ -1,6 +1,6 @@
 variable "prefix" {
   description = "Prefix for all resources"
-  default     = "Team16"
+  default     = "team16"
 }
 
 variable "team_tag" {
