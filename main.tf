@@ -22,7 +22,7 @@ resource "aws_vpc" "vpc_1" {
 
   tags = {
     Name = "${var.prefix}-vpc-1"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -34,7 +34,7 @@ resource "aws_subnet" "subnet_1" {
 
   tags = {
     Name = "${var.prefix}-subnet-1"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -46,7 +46,7 @@ resource "aws_subnet" "subnet_2" {
 
   tags = {
     Name = "${var.prefix}-subnet-2"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -58,7 +58,7 @@ resource "aws_subnet" "subnet_3" {
 
   tags = {
     Name = "${var.prefix}-subnet-3"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -70,7 +70,7 @@ resource "aws_subnet" "subnet_4" {
 
   tags = {
     Name = "${var.prefix}-subnet-4"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -79,7 +79,7 @@ resource "aws_internet_gateway" "igw_1" {
 
   tags = {
     Name = "${var.prefix}-igw-1"
-    Team = var.prefix
+    Team = var.team_tag
   }
 }
 
@@ -93,6 +93,7 @@ resource "aws_route_table" "rt_1" {
 
   tags = {
     Name = "${var.prefix}-rt-1"
+    Team = var.team_tag
   }
 }
 
@@ -137,6 +138,7 @@ resource "aws_security_group" "sg_1" {
 
   tags = {
     Name = "${var.prefix}-sg-1"
+    Team = var.team_tag
   }
 }
 
@@ -273,6 +275,7 @@ resource "aws_instance" "ec2_1" {
   # 인스턴스에 태그 설정
   tags = {
     Name = "${var.prefix}-ec2-1"
+    Team = var.team_tag
   }
 
   # 루트 볼륨 설정

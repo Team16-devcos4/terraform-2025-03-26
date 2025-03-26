@@ -3,6 +3,11 @@ variable "prefix" {
   default     = "Team16"
 }
 
+variable "team_tag" {
+  description = "team_tag"
+  default     = "devcos4-team16"
+}
+
 variable "region" {
   description = "region"
   default     = "ap-northeast-2"
